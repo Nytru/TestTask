@@ -11,7 +11,8 @@ public class Triangle : IFigure
         get => _a;
         init
         {
-            if (value <= 0) throw new ArgumentException("Side must be greater than 0");
+            if (value <= 0 || float.IsNaN(value) || float.IsInfinity(value))
+                throw new ArgumentException("Side of triangle must be positive number");
             _a = value;
         }
     }
@@ -21,7 +22,8 @@ public class Triangle : IFigure
         get => _b;
         init
         {
-            if (value <= 0) throw new ArgumentException("Side must be greater than 0");
+            if (value <= 0 || float.IsNaN(value) || float.IsInfinity(value))
+                throw new ArgumentException("Side of triangle must be positive number");
             _b = value;
         }
     }
@@ -31,7 +33,8 @@ public class Triangle : IFigure
         get => _c;
         init
         {
-            if (value <= 0) throw new ArgumentException("Side must be greater than 0");
+            if (value <= 0 || float.IsNaN(value) || float.IsInfinity(value))
+                throw new ArgumentException("Side of triangle must be positive number");
             _c = value;
         }
     }
@@ -47,14 +50,13 @@ public class Triangle : IFigure
 
     public float GetArea()
     {
-        var p = (A + B + C) / 2;
+        float p = (A + B + C) / 2;
         return MathF.Sqrt(p * (p - A) * (p - B) * (p - C));
     }
     
     public bool IsRight()
     {
-        var tolerance = 0.0001f;
-        return MathF.Abs(A * A + B * B - C * C) < tolerance || MathF.Abs(A * A + C * C - B * B) < tolerance ||
-               MathF.Abs(B * B + C * C - A * A) < tolerance;
+        return MathF.Abs(A * A + B * B - C * C) < float.Epsilon || MathF.Abs(A * A + C * C - B * B) < float.Epsilon ||
+               MathF.Abs(B * B + C * C - A * A) < float.Epsilon;
     }
 }

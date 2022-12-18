@@ -20,7 +20,7 @@ public class Circle : IFigure
         }
     }
 
-    public  float GetArea()
+    public float GetArea()
     {
         return MathF.PI * Radius * Radius;
     }

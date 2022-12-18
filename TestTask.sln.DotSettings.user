@@ -3,5 +3,6 @@
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;NUnit3x::34AB206F-A71C-46D1-9376-52ADF7868F79::net7.0::FigureTest.Tests&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;NUnit3x::34AB206F-A71C-46D1-9376-52ADF7868F79::net7.0::FigureTest.TriangleTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::34AB206F-A71C-46D1-9376-52ADF7868F79::net7.0::FigureTest.CircleTests&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
