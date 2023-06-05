@@ -3,28 +3,12 @@
 public class Triangle : IFigure
 {
     private const double Precision = double.Epsilon * 1000;
-    
-    private readonly double _a;
-    private readonly double _b;
-    private readonly double _c;
 
-    public double A
-    {
-        get => _a;
-        init => _a = value;
-    }
+    public double A { get; init; }
 
-    public double B
-    {
-        get => _b;
-        init => _b = value;
-    }
+    public double B { get; init; }
 
-    public double C
-    {
-        get => _c;
-        init => _c = value;
-    }
+    public double C { get; init; }
 
     public Triangle(double a, double b, double c)
     {
