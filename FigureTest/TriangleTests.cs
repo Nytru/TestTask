@@ -4,51 +4,45 @@ namespace FigureTest;
 
 public class TriangleTests
 {
+    private const double Precision = 0.0001;
+    
     [Test]
-    [TestCase(2F, 2F, 3F, 1.9843135F)]
-    [TestCase(3F, 3F, 3F, 3.8971143F)]
-    [TestCase(4F, 4F, 4F, 6.928203F)]
-    public void Test_Triangle_Area_Sides(float a, float b, float c, float expected)
+    [TestCase(2, 2, 3, 1.9843135)]
+    [TestCase(3, 3, 3, 3.8971143)]
+    [TestCase(4, 4, 4, 6.928203)]
+    public void Test_Triangle_Area_Sides(double a, double b, double c, double expected)
     {
         var triangle = new Triangle(a, b, c);
-        Assert.That(triangle.GetArea(), Is.EqualTo(expected).Within(float.Epsilon));
+        Assert.That(triangle.GetArea(), Is.EqualTo(expected).Within(Precision));
     }
     
     [Test]
     [TestCase(1, 2, 3)]
-    [TestCase(0, 0, float.NegativeZero)]
+    [TestCase(0, 0, double.NegativeZero)]
     [TestCase(-1, -2, -3)]
-    [TestCase(float.NegativeInfinity, float.NegativeInfinity, float.NaN)]
-    public void Test_Triangle_Area_Sides_Invalid(float a, float b, float c)
+    [TestCase(double.NegativeInfinity, double.NegativeInfinity, double.NaN)]
+    public void Test_Triangle_Area_Sides_Invalid(double a, double b, double c)
     {
         Assert.Throws<ArgumentException>(() => new Triangle(a, b, c));
     }
 
     [Test]
-    [TestCase(3, 4, 5)]
     [TestCase(5, 12, 13)]
-    [TestCase(8, 15, 17)]
-    public void Triangle_Is_Right(float a, float b, float c)
+    [TestCase(8000, 15000, 17000)]
+    [TestCase(0.0003, 0.0004, 0.0005)]
+    public void Triangle_Is_Right(double a, double b, double c)
     {
         var triangle = new Triangle(a, b, c);
         Assert.That(triangle.IsRight(), Is.True);
     }
     
     [Test]
-    [TestCase(3, 4, 6)]
     [TestCase(5, 12, 14)]
-    [TestCase(8, 15, 18)]
-    public void Triangle_Is_Not_Right(float a, float b, float c)
+    [TestCase(8000, 15000, 18000)]
+    [TestCase(0.0003, 0.0004, 0.0006)]
+    public void Triangle_Is_Not_Right(double a, double b, double c)
     {
         var triangle = new Triangle(a, b, c);
         Assert.That(triangle.IsRight(), Is.False);
-    }
-    
-    [Test]
-    [TestCase(100, 100, 100, 4330.12702F)]
-    [TestCase(17, 32, 28, 237.68454F)]
-    public void Static_Method_Test(float a, float b, float c, float expected)
-    {
-        Assert.That(IFigure.GetArea(new Triangle(a, b, c)), Is.EqualTo(expected).Within(float.Epsilon));
     }
 }

@@ -2,26 +2,23 @@
 
 public class Circle : IFigure
 {
-    public Circle(float radius)
+    public Circle(double radius)
     {
+        if (radius <= 0 || double.IsNaN(radius) || double.IsInfinity(radius))
+            throw new ArgumentException("Radius must be positive");
         Radius = radius;
     }
     
-    private float _radius;
+    private double _radius;
     
-    public float Radius
+    public double Radius
     {
         get => _radius;
-        init
-        {
-            if (value <= 0 || float.IsNaN(value) || float.IsInfinity(value))
-                throw new ArgumentException("Radius must be positive");
-            _radius = value;
-        }
+        init => _radius = value;
     }
 
-    public float GetArea()
+    public double GetArea()
     {
-        return MathF.PI * Radius * Radius;
+        return Math.PI * Radius * Radius;
     }
 }

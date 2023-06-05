@@ -4,32 +4,26 @@ namespace FigureTest;
 
 public class CircleTests
 {
+    private const double Precision = 0.0001;
+    
     [Test]
-    [TestCase(3, 3 * 3 * MathF.PI)]
-    [TestCase(4, 4 * 4 * MathF.PI)]
-    [TestCase(5, 5 * 5 * MathF.PI)]
-    public void Test_Circle_Area(float radius, float expected)
+    [TestCase(3, 3D * 3D * Math.PI)]
+    [TestCase(4000, 4000D * 4000D * Math.PI)]
+    [TestCase(0.0005, 0.0005D * 0.0005D * Math.PI)]
+    public void Test_Circle_Area(double radius, double expected)
     {
         var circle = new Circle(radius);
-        Assert.That(circle.GetArea(), Is.EqualTo(expected).Within(float.Epsilon));
+        Assert.That(circle.GetArea(), Is.EqualTo(expected).Within(Precision));
     }
 
     [Test]
-    [TestCase(float.NegativeInfinity)]
-    [TestCase(float.PositiveInfinity)]
-    [TestCase(float.NegativeZero)]
-    [TestCase(float.NaN)]
+    [TestCase(double.NegativeInfinity)]
+    [TestCase(double.PositiveInfinity)]
+    [TestCase(double.NegativeZero)]
+    [TestCase(double.NaN)]
     [TestCase(-1)]
-    public void Test_Triangle_Area_Exceptions(float radius)
+    public void Test_Triangle_Area_Exceptions(double radius)
     {
         Assert.Throws<ArgumentException>(() => new Circle(radius));
-    }
-    
-    [Test]
-    [TestCase(150, MathF.PI * 150 * 150)]
-    [TestCase(200, MathF.PI * 200 * 200)]
-    public void Static_Method_Test(float radius, float expected)
-    {
-        Assert.That(IFigure.GetArea(new Circle(radius)), Is.EqualTo(expected).Within(float.Epsilon));
     }
 }
